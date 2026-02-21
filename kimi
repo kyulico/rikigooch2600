@@ -1,7 +1,92 @@
-       <div class="flexed">
-          <div class="monika"></div>
-          <div class="natsuki"></div>
-          <div class="yuri"></div>
-          <div class="sayori"></div>
-        </div>
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body {
+    background: #f3f3f3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+  }
 
+  .card {
+    background: #d9d9d9;
+    padding: 15px;
+    border-radius: 20px;
+    width: 320px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+
+  .top {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+
+  .username {
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  .button {
+    background: #eeeeee;
+    border-radius: 30px;
+    padding: 10px 15px;
+    cursor: pointer;
+    text-align: center;
+    transition: opacity 0.3s ease;
+    opacity: 1;
+  }
+
+  .button.fade-out {
+    opacity: 0;
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="top">
+    <img src="https://i.pinimg.com/736x/cd/6f/25/cd6f253528ee8ed9753d4c2ae3725769.jpg" class="profile-pic">
+    <div class="username">hoonie ૮ ˶ᵔ ᵕ ᵔ˶ ა</div>
+  </div>
+
+  <div class="button" onclick="changeMessage()" id="messageBox">
+    Do you want lasagna
+  </div>
+</div>
+
+<script>
+  const messages = [
+    "Do you want lasagna",
+    "Okay fine… what about pizza?",
+    "You’re so picky 😔",
+    "I’m ordering anyway."
+  ];
+
+  let index = 0;
+  const box = document.getElementById("messageBox");
+
+  function changeMessage() {
+    box.classList.add("fade-out");
+
+    setTimeout(() => {
+      index = (index + 1) % messages.length;
+      box.innerText = messages[index];
+      box.classList.remove("fade-out");
+    }, 300);
+  }
+</script>
+
+</body>
+</html>
