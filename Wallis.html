@@ -2,90 +2,128 @@
 <html>
 <head>
 <style>
-  body {
-    background: #f3f3f3;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    font-family: Arial, sans-serif;
-  }
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent; /* transparent background */
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+}
 
-  .card {
-    background: #d9d9d9;
-    padding: 15px;
-    border-radius: 20px;
-    width: 320px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  }
+/* Grey notification card */
+.card {
+  width: 380px;
+  padding: 20px;
+  border-radius: 28px;
+  background: linear-gradient(180deg,#d9d9d9 0%,#cfcfcf 100%);
+  box-shadow:
+    0 18px 35px rgba(0,0,0,0.18),
+    inset 0 1px 0 rgba(255,255,255,0.6);
+}
 
-  .top {
-    display: flex;
-    align-items: center;
-    margin-bottom: 12px;
-  }
+/* Top row */
+.top {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
 
-  .profile-pic {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 10px;
-  }
+.pfp-wrapper {
+  padding: 3px;
+  background: white;
+  border-radius: 12px;
+  margin-right: 12px;
+}
 
-  .username {
-    font-weight: bold;
-    font-size: 14px;
-  }
+.pfp {
+  width: 46px;
+  height: 46px;
+  border-radius: 10px;
+  object-fit: cover;
+  display: block;
+}
 
-  .button {
-    background: #eeeeee;
-    border-radius: 30px;
-    padding: 10px 15px;
-    cursor: pointer;
-    text-align: center;
-    transition: opacity 0.3s ease;
-    opacity: 1;
-  }
+.username {
+  font-weight: 600;
+  font-size: 16px;
+  color: #111;
+}
 
-  .button.fade-out {
-    opacity: 0;
-  }
+.time {
+  font-size: 14px;
+  color: #444;
+  margin-left: 6px;
+}
+
+/* Wider message bubble */
+.message {
+  width: 100%;
+  background: linear-gradient(180deg,#f4f4f4 0%,#e9e9e9 100%);
+  padding: 16px 20px;
+  border-radius: 32px;
+  font-size: 16px;
+  color: #111;
+  cursor: pointer;
+  box-sizing: border-box;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.9),
+    0 3px 6px rgba(0,0,0,0.08);
+}
+
+/* Subtle bounce */
+.message.bounce {
+  animation: bubbleBounce 0.32s cubic-bezier(.34,1.6,.64,1);
+}
+
+@keyframes bubbleBounce {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.04); }
+  70%  { transform: scale(0.98); }
+  100% { transform: scale(1); }
+}
+
 </style>
 </head>
 <body>
 
 <div class="card">
   <div class="top">
-    <img src="https://i.pinimg.com/736x/cd/6f/25/cd6f253528ee8ed9753d4c2ae3725769.jpg" class="profile-pic">
-    <div class="username">hoonie ૮ ˶ᵔ ᵕ ᵔ˶ ა</div>
+    <div class="pfp-wrapper">
+      <img src="https://i.pinimg.com/736x/93/41/3c/93413cabfa4eb423ca21b2e6d8ec2686.jpg" class="pfp">
+    </div>
+    <div>
+      <span class="username">hoonie ૮ ˶ᵔ ᵕ ᵔ˶ ა</span>
+      <span class="time">9m</span>
+    </div>
   </div>
 
-  <div class="button" onclick="changeMessage()" id="messageBox">
-    Do you want lasagna
+  <div class="message" id="messageBox" onclick="changeMessage()">
+      who is Flo and why is he texting you about your period .
   </div>
 </div>
 
 <script>
-  const messages = [
-    "Do you want lasagna",
-    "Okay fine… what about pizza?",
-    "You’re so picky 😔",
-    "I’m ordering anyway."
-  ];
+const messages = [
+  "who is Flo and why is he texting you about your period .",
+  "baby what does 'oomf' mean",
+  "do you want a matcha",
+  "baby who's cloud strife 😔",
+  "I saw your . post you can deletf it now . haha"
+];
 
-  let index = 0;
-  const box = document.getElementById("messageBox");
+let index = 0;
+const box = document.getElementById("messageBox");
 
-  function changeMessage() {
-    box.classList.add("fade-out");
+function changeMessage() {
+  box.classList.remove("bounce");
+  void box.offsetWidth;
+  box.classList.add("bounce");
 
-    setTimeout(() => {
-      index = (index + 1) % messages.length;
-      box.innerText = messages[index];
-      box.classList.remove("fade-out");
-    }, 300);
-  }
+  index = (index + 1) % messages.length;
+  box.innerText = messages[index];
+}
 </script>
 
 </body>
